@@ -21,7 +21,9 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
 
-      - name: Make empty commit
+      - name: Append timestamp to activity.txt
         run: |
-          git commit --allow-empty -m "Daily Commit - $(date)"
+          echo "Commit at: $(date)" >> activity.txt
+          git add activity.txt
+          git commit -m "Auto commit at $(date)"
           git push origin main
